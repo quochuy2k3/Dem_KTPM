@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Eight Queens</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+        var t0 = performance.now();
+        const N = 8;
+        let queens = [N];
+
+        function addQueen(idx) {
+            for (let j = 0; j < N; j++)
+                if (Q_Index(idx, j) == true) {
+                    queens[idx] = j;
+                    if (idx == N - 1) output();
+                    else addQueen(idx + 1);
+                    queens[idx] = 0;
+                }
+        }
+
+        function output() {
+            for (let i = 0; i < N; i++) {
+                for (let j = 0; j < N; j++)
+                    if (queens[i] == j) document.write("1 \t");
+                    else document.write("0 \t");
+                document.write("</br>");
+            }
+            document.write("</br>");
+        }
+
+        function Q_Index(i, j) {
+            for (let check = 0; check < i; check++)
+                if (
+                    queens[check] == j ||
+                    Math.abs(check - i) == Math.abs(queens[check] - j)
+                )
+                    return false;
+            return true;
+        }
+
+        function output() {
+            for (let i = 0; i < N; i++) {
+                for (let j = 0; j < N; j++)
+                    if (queens[i] == j) document.write("1 \t");
+                    else document.write("0 \t");
+                document.write("</br>");
+            }
+            document.write("</br>");
+        }
+
+        addQueen(0);
+        //code
+        var t1 = performance.now();
+        document.write("Duration: " + (t1 - t0) + " milliseconds.");
+    </script>
+</head>
+
+<body></body>
+
+</html>
